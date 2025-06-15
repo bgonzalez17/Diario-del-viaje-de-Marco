@@ -1,0 +1,32 @@
+public class DiarioMarco {
+    public static void main(String[] args) {
+        double[] horasMarco =    {8.19, 9.88, 6.97, 8.92, 9.83, 9.64, 9.60, 8.98};
+        double[] velMarco =      {2.94, 12.46, 13.53, 11.07, 12.17, 10.63, 12.52, 14.53};
+        double[] horasMadre =    {7.22, 8.66, 6.04, 6.34, 7.14, 7.06, 7.22, 8.13};
+        double[] velMadre =      {8.02, 8.46, 8.34, 5.85, 6.08, 6.31, 6.16, 7.87};
+
+        double distanciaMarco = 0;
+        double distanciaMadre = 350;
+
+        System.out.println("DIARIO DEL VIAJE DE MARCO\n");
+
+        for (int dia = 0; dia < 8; dia++) {
+            double avanceMarco = horasMarco[dia] * velMarco[dia];
+            double avanceMadre = horasMadre[dia] * velMadre[dia];
+
+            distanciaMarco += avanceMarco;
+            distanciaMadre += avanceMadre;
+            double distanciaEntreEllos = distanciaMadre - distanciaMarco;
+
+            System.out.printf("DÍA %d\n", dia + 1);
+            System.out.printf("Marco: Avance %.2f horas a %.2f km/h recorriendo %.2f km.\n",
+                    horasMarco[dia], velMarco[dia], avanceMarco);
+            System.out.printf("Madre: Avance %.2f horas a %.2f km/h recorriendo %.2f km.\n",
+                    horasMadre[dia], velMadre[dia], avanceMadre);
+            System.out.printf("Distancia entre Marco y su madre: %.2f km.\n", distanciaEntreEllos);
+            System.out.println("-".repeat(50));
+        }
+
+        System.out.println("Al final del día 8, Marco encuentra a su madre.");
+    }
+}
