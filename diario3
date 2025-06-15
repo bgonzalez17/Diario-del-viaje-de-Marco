@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class DiarioMarcoEmocion {
     public static void main(String[] args) {
-        // Datos originales del diario de Marco
+        // Datos originales de Marco
         double[] horasMarco = {8.19, 9.88, 6.97, 8.92, 9.83, 9.64, 9.60, 8.98};
         double[] velMarco   = {2.94, 12.46, 13.53, 11.07, 12.17, 10.63, 12.52, 14.53};
 
