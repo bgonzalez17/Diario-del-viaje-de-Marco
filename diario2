@@ -1,0 +1,64 @@
+import java.util.Random;
+
+public class DiarioMarcoModificado {
+    public static void main(String[] args) {
+        // Datos originales de Marco
+        double[] horasMarco = {8.19, 9.88, 6.97, 8.92, 9.83, 9.64, 9.60, 8.98};
+        double[] velMarco   = {2.94, 12.46, 13.53, 11.07, 12.17, 10.63, 12.52, 14.53};
+
+        double distanciaMarco = 0;
+        double distanciaMadre = 350;
+
+        Random rand = new Random();
+
+        System.out.println("CLIMA ALEATORIO PARA LA MADRE\n");
+
+        for (int dia = 0; dia < horasMarco.length; dia++) {
+            System.out.printf("DÍA %d%n", dia + 1);
+
+            // Marco (datos del diario)
+            double avanceMarco = horasMarco[dia] * velMarco[dia];
+            distanciaMarco += avanceMarco;
+
+            System.out.printf("Marco: Avance %.2f h a %.2f km/h recorriendo %.2f km.%n",
+                    horasMarco[dia], velMarco[dia], avanceMarco);
+
+            // Madre (datos generados)
+            double horasMadre = 6 + rand.nextDouble() * 3;       // 6 a 9 h
+            double velocidadMadre = 6 + rand.nextDouble() * 3;   // 6 a 9 km/h
+            String clima;
+
+            double prob = rand.nextDouble();
+            if (prob < 0.10) {
+                velocidadMadre *= 0.50;
+                clima = "Lluvia muy fuerte";
+            } else if (prob < 0.40) {
+                velocidadMadre *= 0.75;
+                clima = "Lluvia";
+            } else {
+                clima = "Buen tiempo";
+            }
+
+            double avanceMadre = horasMadre * velocidadMadre;
+            distanciaMadre += avanceMadre;
+
+            System.out.printf("Madre: Avance %.2f h a %.2f km/h [%s] recorriendo %.2f km.%n",
+                    horasMadre, velocidadMadre, clima, avanceMadre);
+
+            double distanciaEntre = distanciaMadre - distanciaMarco;
+            System.out.printf("Distancia entre Marco y su madre: %.2f km%n", distanciaEntre);
+            System.out.println("-".repeat(60));
+
+            // Fin si Marco la alcanza
+            if (distanciaMarco >= distanciaMadre) {
+                System.out.printf("Marco ha alcanzado a su madre al final del día %d.%n", dia + 1);
+                return;
+            }
+        }
+
+        // Si no la alcanzó al final
+        double finalDistancia = distanciaMadre - distanciaMarco;
+        System.out.printf("%n Al final del día %d, Marco aún está a %.2f km de su madre.%n",
+                horasMarco.length, finalDistancia);
+    }
+}
